@@ -14,11 +14,12 @@ const setUpServer=async ()=>{
 
 
 
-    app.listen(PORT,()=>{
+    app.listen(PORT,async ()=>{
         console.log(`The server is running on ${PORT}`);
         const cityInst=new CityRepository();
-        cityInst.createCity({name:"New Delhi"})
-        cityInst.deleteCity({id:1})
+        
+
+        
         
     })
 }
