@@ -1,69 +1,127 @@
-const {City} = require('../models/index');
+// const { City } = require('../models/index');
 
+// class CityRepository {
 
-class CityRepository{
-    async createCity({name}) {
-        try {
+//     async createCity({ name }) { 
+//         try {
             
-            const city=await City.create({name})
+//             const city = await City.create({
+//                 name
+//             });
+//             return city;
+//         } catch (error) {
+//             console.log("Something went wrong in the repository layer");
+//             throw {error};
+//         }
+//     }
+	
+//     async updateCity({cityId, data}) {
+//         try {
+//             const city = await City.update(data, {
+//                 where: {
+//                     id: cityId
+//                 }
+//             });
+//             return city;
+//         } catch (error) {
+//             console.log("Something went wrong in the repository layer");
+//             throw {error};
+//         }
+//     }
+
+//     // async getCity(cityId) {
+//     //     try {
+//     //         const city = await City.findByPk(cityId);
+            
+//     //         return city;
+//     //     } catch (error) {
+//     //         console.log("Something went wrong in the repository layer");
+//     //         throw {error};
+//     //     }
+//     // }
+//     async getCity(cityId) {
+//         try {
+//             const city = await City.findByPk(cityId);
+//             return city;
+//         } catch (error) {
+//             console.log("Something went wrong in the repository layer");
+//             throw {error};
+//         }
+//     }
+//     async getAllCity(){
+//         try {
+//             const city=await City.findAll();
+//             return city;
+//         } catch (error) {
+//             console.log("Something went wrong in the repository layer");
+//             throw {error};
+//         }
+//     }
+
+// }
+
+// module.exports = CityRepository;
+const { City } = require('../models/index');
+
+class CityRepository {
+
+    async createCity({ name }) { 
+        try {
+            const city = await City.create({
+                name
+            });
             return city;
-
         } catch (error) {
-            console.log("Something went wrong in the repo layer");
-            throw({error});
+            console.log("Something went wrong in the repository layer");
+            throw {error};
         }
     }
-    
-    async deleteCity({id}){
+
+    async deleteCity(cityId) {
         try {
-            
-            const record=await City.destroy({
-                where:{
-                    id:id,
+            await City.destroy({
+                where: {
+                    id: cityId
                 }
-            })
+            });
             return true;
-
-
         } catch (error) {
-            console.log("Something went wrong in the repo layer");
-            throw({error});
+            console.log("Something went wrong in the repository layer");
+            throw {error};
         }
     }
-    async updateCity({cityId,data}){
+
+    async updateCity(cityId, data) { // {name: "Prayagraj"}
         try {
-
-            const cityUpdate=await City.update(
-                data,{
-                    where:{
-                        id:cityId,
-                    }
-                }
-            )
-            return cityUpdate;
-            
+            // The below approach also works but will not return updated object
+            // if we are using Pg then returning: true can be used, else not
+            // const city = await City.update(data, {
+            //     where: {
+            //         id: cityId
+            //     },
+            //      
+            // });
+            // for getting updated data in mysql we use the below approach
+            const city = await City.findByPk(cityId);
+            city.name = data.name;
+            await city.save();
+            return city;
         } catch (error) {
-            console.log("Something went wrong in the repo layer");
-            throw({error});
+            console.log("Something went wrong in the repository layer");
+            throw {error};
         }
-
-
-        
     }
-    async getCity({cityId}){
+
+    async getCity(cityId) {
         try {
-            const cityName=await City.findByPk(cityId);
-            return cityName;
-
+            const city = await City.findByPk(cityId);
+            return city;
         } catch (error) {
-            console.log("Something went wrong in the repo layer");
-            throw({error});
+            console.log("Something went wrong in the repository layer");
+            throw {error};
         }
     }
-
 
 }
 
-module.exports={
-    CityRepository
-};
+module.exports = CityRepository;
