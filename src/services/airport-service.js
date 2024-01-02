@@ -41,6 +41,15 @@ class AirportService{
             throw{error};
         }
     }
+    async updateAirport(data){
+        try {
+            const updatedAirport=await this.airportrepository.updateAirport(data);
+            return updatedAirport
+        } catch (error) {
+            console.log("Something went wrong with the service layer");
+            throw{error};
+        }
+    }
 
 
 

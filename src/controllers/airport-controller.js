@@ -66,7 +66,7 @@ const getAllAirport=async(req,res)=>{
         })   
     }
 }
-const geAirport=async(req,res)=>{
+const getAirport=async(req,res)=>{
     
     try {
         const oneAirport=await airportservice.getAirport(req.params);
@@ -87,9 +87,37 @@ const geAirport=async(req,res)=>{
     }
 }
 
+const updateAirport=async (req,res)=>{
+    
+    try {
+        
+        const updatedAirport=await airportservice.updateAirport({
+            id:req.params.id,
+            data:req.body
+        
+        });
+        
+        res.status(200).json({
+            Message:"Airport Updated successfully",
+            success:true,
+            data:updatedAirport,
+            error:{}
+        })
+    } catch (error) {
+        console.log("Something went wrong in the controller")
+        res.status(500).json({
+            Message:" Unable update the Airports",
+            success:false,
+            data:{},
+            error:error
+        }) 
+    }
+}
+
 module.exports={
     create,
     deleteAirport,
     getAllAirport,
-    geAirport
+    getAirport,
+    updateAirport
 }

@@ -74,6 +74,21 @@ class AirportRepository{
             throw{error};
         }
     }
+    async updateAirport({id,data}){
+        try {
+            console.log( data);
+            const airport=await Airport.findByPk(id);
+            airport.name=data.name;
+            airport.address=data.address;
+            airport.cityId=data.cityId;
+            await airport.save();
+            return airport;
+
+        } catch (error) {
+            console.log("Something went wrong in the repo layer");
+            throw{error};
+        }
+    }
 }
 
 module.exports=AirportRepository;
