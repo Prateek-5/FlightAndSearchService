@@ -1,8 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
-// const { PORT } = require('./config/serverConfig');
+const DB=require('./models/index')
+const sequelize = require('sequelize');
+const {Airport,City}=require('./models/index');
+ const { PORT } = require('./config/serverConfig');
 const ApiRoutes = require('./routes/index');
+
 
 const setupAndStartServer = async () => {
 
@@ -14,8 +17,18 @@ const setupAndStartServer = async () => {
 
     app.use('/api', ApiRoutes);
 
-    app.listen(3001, async () => {
-        console.log(`Server started at ${3001}`);
+    app.listen(PORT, async () => {
+        console.log(`Server started at ${PORT}`);
+        //DB.sequelize.sync({alter:true})
+        if(process.env.SYN_DB=='true'){
+            DB.sequelize.sync({alter:true});
+            
+        }
+        // const city=await City.findByPk(21);
+        // const aiport=await city.getAirports();
+
+        // console.log(city,aiport);
+
     });
 }
 
