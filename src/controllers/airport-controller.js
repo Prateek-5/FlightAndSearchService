@@ -45,8 +45,51 @@ const deleteAirport=async(req,res)=>{
         })
     }
 }
+const getAllAirport=async(req,res)=>{
+    
+    try {
+        const data=await airportservice.getAllAirport();
+        res.status(200).json({
+            Message:"Below is the list of all airports",
+            success:true,
+            data:{data},
+            error:{}
+
+    })
+    } catch (error) {
+        console.log("Something went wrong in the controller")
+        res.status(500).json({
+            Message:" Unable to fetch all Airports",
+            success:false,
+            data:{},
+            error:error
+        })   
+    }
+}
+const geAirport=async(req,res)=>{
+    
+    try {
+        const oneAirport=await airportservice.getAirport(req.params);
+        res.status(200).json({
+            Message:"Airport Found Successfully",
+            success:true,
+            data:oneAirport,
+            error:{}
+        })
+    } catch (error) {
+        console.log("Something went wrong in the controller")
+        res.status(500).json({
+            Message:" Unable to fetch the Airports",
+            success:false,
+            data:{},
+            error:error
+        })  
+    }
+}
 
 module.exports={
     create,
-    deleteAirport
+    deleteAirport,
+    getAllAirport,
+    geAirport
 }

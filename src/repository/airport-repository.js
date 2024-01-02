@@ -51,6 +51,29 @@ class AirportRepository{
             throw{error};
         }
     }
+    async getAllAirport(){
+        try {
+            const allAirport=await Airport.findAll();
+            return allAirport;
+        } catch (error) {
+            console.log("Something went wrong in the repo layer");
+            throw{error};
+        }
+    }
+    async getAirport({id}){
+        try {
+            
+            const oneAirport=await Airport.findAll({
+                where:{
+                    id:id
+                }
+            })
+            return oneAirport;
+        } catch (error) {
+            console.log("Something went wrong in the repo layer");
+            throw{error};
+        }
+    }
 }
 
 module.exports=AirportRepository;

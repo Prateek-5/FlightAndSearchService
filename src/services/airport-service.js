@@ -23,6 +23,24 @@ class AirportService{
             throw{error};
         }
     }
+    async getAllAirport(){
+        try {
+            const allAirport=await this.airportrepository.getAllAirport();
+            return allAirport;
+        } catch (error) {
+            console.log("Something went wrong with the service layer");
+            throw{error};
+        }
+    }
+    async getAirport(id){
+        try {
+            const oneAirport=await this.airportrepository.getAirport(id);
+            return oneAirport;
+        } catch (error) {
+            console.log("Something went wrong with the service layer");
+            throw{error};
+        }
+    }
 
 
 
