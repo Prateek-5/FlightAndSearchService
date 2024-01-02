@@ -23,6 +23,30 @@ const airportservice= new AirportService();
     }
 }
 
+const deleteAirport=async(req,res)=>{
+    try {
+        
+        const response=await airportservice.deleteAirport(req.params);
+        res.status(200).json({
+            Message:"Airport Deleated Successfully",
+            success:true,
+            data:{},
+            error:{},
+        })
+
+
+    } catch (error) {
+        console.log("Something went wrong in the controller")
+        res.status(500).json({
+            Message:"Airport Unable to delete Airport",
+            success:false,
+            data:{},
+            error:error
+        })
+    }
+}
+
 module.exports={
-    create
+    create,
+    deleteAirport
 }

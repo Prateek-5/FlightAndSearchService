@@ -32,6 +32,25 @@ class AirportRepository{
         
 
     }
+    async deleteAirport(airportId){
+        try {
+            console.log(airportId.id);
+            const response=await Airport.destroy({
+                where:{
+                    id: airportId.id
+                }
+            })
+            if (response === 0) {
+                // If no rows were deleted, it means the airport with the provided ID was not found
+                console.log(`Airport with ID ${airportId} not found`);
+            }
+            return response;
+            
+        } catch (error) {
+            console.log("Something went wrong in the repo layer");
+            throw{error};
+        }
+    }
 }
 
 module.exports=AirportRepository;
