@@ -11,6 +11,16 @@ class FlightRepository{
             throw {error};
         }
     }
+    async getFlight(id){
+        try {
+           
+            const flight=await Flight.findByPk(id.id);
+            return flight;
+        } catch (error) {
+            console.log("Something went wrong with the repostory layer");
+            throw{error};
+        }
+    }
 }
 
 module.exports=FlightRepository
