@@ -1,5 +1,6 @@
 const {AirportRepository}=require('../repository/index')
 
+
 class AirportService{
     constructor(){
         this.airportrepository=new AirportRepository();
@@ -7,6 +8,9 @@ class AirportService{
 
     async createAirport(data){
         try {
+            
+
+
             const airport=this.airportrepository.createAirport(data);
             return airport;
         } catch (error) {
