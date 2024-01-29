@@ -103,11 +103,36 @@ const getAll=async(req,res)=>{
         });
     }
 }
+//get all city airports
+
+const getCityAirport=async(req,res)=>{
+    try {
+
+        const response =await cityService.getCityAirport(req.params.id);
+
+        res.status(200).json({
+            message:"Below is the list of all the Airport's situated in the city",
+            success:true,
+            data:response,
+            error:{}
+        })
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Not able to fetch all cities Airports',
+            err: error
+        });
+    }
+}
 
 module.exports = {
     create,
     destroy,
     get,
     update,
-    getAll
+    getAll,
+    getCityAirport
 }

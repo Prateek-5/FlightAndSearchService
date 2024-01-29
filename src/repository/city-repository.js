@@ -82,6 +82,25 @@ class CityRepository {
             throw {error};
         }
     }
+    async getCityAirport(data){
+        try {
+            //     const city=await City.findByPk(18);
+            //     const aiport=await city.getAirports();
+
+            //     console.log(aiport);
+            
+            const city=await City.findByPk(data);
+            const airport=await city.getAirports();
+            console.log(airport);
+            return airport;
+
+
+        } catch (error) {
+            console.log("Something went wrong in the repository layer");
+            throw{error};
+
+        }
+    }
 
 }
 
