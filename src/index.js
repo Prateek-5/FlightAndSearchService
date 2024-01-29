@@ -24,12 +24,12 @@ const setupAndStartServer = async () => {
             DB.sequelize.sync({alter:true});
             
         }
-        // const city=await City.findByPk(21);
-        // const aiport=await city.getAirports();
+        const city=await City.findByPk(18);
+        const aiport=await city.getAirports();
 
-        // console.log(city,aiport);
+        console.log(aiport);
 
-    });
+    }); 
 }
 
 setupAndStartServer();
