@@ -3,7 +3,9 @@ const { Airplane } = require('../models/index');
 class AirplaneRepository {
     async getAirplane(id) {
         try {
+            console.log(id,"This is from the repo of airplane");
             const airplane = await Airplane.findByPk(id);
+            
             return airplane;
         } catch (error) {
             console.log("Something went wrong in the repository layer");

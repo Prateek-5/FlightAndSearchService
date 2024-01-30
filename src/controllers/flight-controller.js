@@ -42,9 +42,29 @@ const flightservice=new FlightService();
             })
         }
     }
+    const getAllFlight=async(req,res)=>{
+        try {
+            const flight=await flightservice.getAllFlight(req.body);
+            res.status(200).json({
+                Message:"Below is the flight information required",
+                success:true,
+                data:{flight},
+                error:{}
+            })
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({
+                Message:"Unable to fetch flight",
+                data:{},
+                success:false,
+                error:{error}
+            })
+        }
+    }
 
 
 module.exports={
     createFlight,
-    getFlight
+    getFlight,
+    getAllFlight
 }

@@ -5,6 +5,8 @@ const sequelize = require('sequelize');
 const {Airport,City}=require('./models/index');
  const { PORT } = require('./config/serverConfig');
 const ApiRoutes = require('./routes/index');
+const FlightRepository = require("./repository/flight-repository");
+const { AirplaneRepository } = require("./repository");
 
 
 const setupAndStartServer = async () => {
@@ -24,6 +26,9 @@ const setupAndStartServer = async () => {
     //         DB.sequelize.sync({alter:true});
             
     //     }
+        // const airplanerepository=new AirplaneRepository;
+        // const response=await airplanerepository.getAirplane(4);
+        // console.log(response);
     
 
     }); 
