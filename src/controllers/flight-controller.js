@@ -1,11 +1,31 @@
 const {FlightService}=require('../services/index');
 
+
 const flightservice=new FlightService();
 
 
+/*
+    flightNumber
+    airplaneId
+    departureAirportId
+    arrivalAirportId
+    arrivalTime
+    departureTime
+    price
+*/
     const createFlight=async (req,res)=>{
         try {
-            const createdFlight=await flightservice.createFlight(req.body);
+
+            const flighDetails={
+                flightNumber:req.body.flightNumber,
+                airplaneId:req.body.airplaneId,
+                departureAirportId:req.body.departureAirportId,
+                arrivalAirportId:req.body.arrivalAirportId,
+                arrivalTime:req.body.arrivalTime,
+                departureTime:req.body.departureTime,
+                price:req.body.price
+            }
+            const createdFlight=await flightservice.createFlight(flighDetails);
             res.status(200).json({
                 Message:"Flight created successfully",
                 success:true,
