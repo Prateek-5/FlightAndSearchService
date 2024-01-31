@@ -1,3 +1,5 @@
+const {ClientErrorCodes}=require('../util/error-code')
+
 const validateCreateFlight=(req,res,next)=>{
     if(!req.body.flightNumber ||
         !req.body.airplaneId ||
@@ -7,7 +9,7 @@ const validateCreateFlight=(req,res,next)=>{
         !req.body.departureTime || 
         !req.body.price)
     {
-        res.status(400).json({
+        res.status(ClientErrorCodes.BAD_REQUEST).json({
             message:"The request body does'nt have the required fields",
             data:{},
             success:false,

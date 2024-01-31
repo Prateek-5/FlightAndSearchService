@@ -1,4 +1,5 @@
 const {FlightService}=require('../services/index');
+const {SuccessCodes}=require('../util/error-code');
 
 
 const flightservice=new FlightService();
@@ -26,7 +27,7 @@ const flightservice=new FlightService();
                 price:req.body.price
             }
             const createdFlight=await flightservice.createFlight(flighDetails);
-            res.status(200).json({
+            res.status(SuccessCodes.CREATED).json({
                 Message:"Flight created successfully",
                 success:true,
                 data:{createdFlight},
@@ -46,7 +47,7 @@ const flightservice=new FlightService();
         
         try {
             const flight=await flightservice.getFlight(req.params);
-            res.status(200).json({
+            res.status(SuccessCodes.OK).json({
                 Message:"Below is the flight information required",
                 success:true,
                 data:{flight},
@@ -66,7 +67,7 @@ const flightservice=new FlightService();
         try {
             
             const flight=await flightservice.getAllFlight(req.query);
-            res.status(200).json({
+            res.status(SuccessCodes.OK).json({
                 Message:"Below is the flight information required",
                 success:true,
                 data:{flight},
