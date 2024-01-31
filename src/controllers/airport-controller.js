@@ -4,7 +4,7 @@ const airportservice= new AirportService();
 
  const create=async(req,res)=>{
     try {
-        const airport=await airportservice.createAirport(req.body);
+        const airport=await airportservice.create(req.body);
         res.status(201).json({
             Message:"Airport Created Successfully",
             success:true,
@@ -26,7 +26,7 @@ const airportservice= new AirportService();
 const deleteAirport=async(req,res)=>{
     try {
         
-        const response=await airportservice.deleteAirport(req.params);
+        const response=await airportservice.destroy(req.params);
         res.status(200).json({
             Message:"Airport Deleated Successfully",
             success:true,
@@ -48,7 +48,7 @@ const deleteAirport=async(req,res)=>{
 const getAllAirport=async(req,res)=>{
     
     try {
-        const data=await airportservice.getAllAirport();
+        const data=await airportservice.getAll();
         res.status(200).json({
             Message:"Below is the list of all airports",
             success:true,
@@ -69,7 +69,7 @@ const getAllAirport=async(req,res)=>{
 const getAirport=async(req,res)=>{
     
     try {
-        const oneAirport=await airportservice.getAirport(req.params);
+        const oneAirport=await airportservice.get(req.params.id);
         res.status(200).json({
             Message:"Airport Found Successfully",
             success:true,
@@ -91,7 +91,7 @@ const updateAirport=async (req,res)=>{
     
     try {
         
-        const updatedAirport=await airportservice.updateAirport({
+        const updatedAirport=await airportservice.update({
             id:req.params.id,
             data:req.body
         

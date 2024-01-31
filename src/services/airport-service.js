@@ -1,60 +1,14 @@
-const {AirportRepository}=require('../repository/index')
+const {AirportRepository}=require('../repository/index');
+const CrudService=require('./crud-service');
 
 
-class AirportService{
+class AirportService extends CrudService{
     constructor(){
-        this.airportrepository=new AirportRepository();
+        const airportRepository=new AirportRepository;
+        super(airportRepository);
     }
 
-    async createAirport(data){
-        try {
-            
-
-
-            const airport=this.airportrepository.createAirport(data);
-            return airport;
-        } catch (error) {
-            console.log("Something went wrong with the service layer");
-            throw{error};
-        }
-    }
-    async deleteAirport(data){
-        try {
-            const deletedAirport=this.airportrepository.deleteAirport(data);
-            return deletedAirport;
-        } catch (error) {
-            console.log("Something went wrong with the service layer");
-            throw{error};
-        }
-    }
-    async getAllAirport(){
-        try {
-            const allAirport=await this.airportrepository.getAllAirport();
-            return allAirport;
-        } catch (error) {
-            console.log("Something went wrong with the service layer");
-            throw{error};
-        }
-    }
-    async getAirport(id){
-        try {
-            const oneAirport=await this.airportrepository.getAirport(id);
-            return oneAirport;
-        } catch (error) {
-            console.log("Something went wrong with the service layer");
-            throw{error};
-        }
-    }
-    async updateAirport(data){
-        try {
-            const updatedAirport=await this.airportrepository.updateAirport(data);
-            return updatedAirport
-        } catch (error) {
-            console.log("Something went wrong with the service layer");
-            throw{error};
-        }
-    }
-
+    
 
 
 

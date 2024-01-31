@@ -39,7 +39,9 @@ class FlightRepository{
     }
 
     /*
-        In the above mentioned 
+        In the above mentioned as we require a operation like price>=minPrice and price<=maxPrice we need the use of 
+        op privided by sequilize for the same i have created an array of objects and assgned it to the Op.and and then 
+        computing the filter please refere the important-doc for better understanding of the same 
     
     */
 
@@ -66,6 +68,7 @@ class FlightRepository{
     }
     async getAllFlight(data){
         try {
+            console.log("This is the data received in the repo ",data);
             const filterObject=this.#createFilter(data)
             const flight=await Flight.findAll(
                 {

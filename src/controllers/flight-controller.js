@@ -44,7 +44,8 @@ const flightservice=new FlightService();
     }
     const getAllFlight=async(req,res)=>{
         try {
-            const flight=await flightservice.getAllFlight(req.body);
+            
+            const flight=await flightservice.getAllFlight(req.query);
             res.status(200).json({
                 Message:"Below is the flight information required",
                 success:true,

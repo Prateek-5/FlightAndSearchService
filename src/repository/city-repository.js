@@ -84,10 +84,6 @@ class CityRepository {
     }
     async getCityAirport(data){
         try {
-            //     const city=await City.findByPk(18);
-            //     const aiport=await city.getAirports();
-
-            //     console.log(aiport);
             
             const city=await City.findByPk(data);
             const airport=await city.getAirports();
