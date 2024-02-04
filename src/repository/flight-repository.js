@@ -81,6 +81,25 @@ class FlightRepository{
             throw{error};
         }
     }
+
+    async update(flightId,data){
+        try {
+            console.log("This message is from repo layer");
+            console.log(flightId);
+
+
+            await Flight.update(data,{
+                where:{
+                    id: flightId.id
+                }
+            })
+            return true;
+
+        } catch (error) {
+            console.log("Something went wrong with the repostory layer");
+            throw{error};
+        }
+    }
 }
  
 

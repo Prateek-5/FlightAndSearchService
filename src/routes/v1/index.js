@@ -22,6 +22,7 @@ router.post('/flights',
 router.get('/flight/:id',FlightController.getFlight);
 router.get('/cityairports/:id',CityController.getCityAirport);
 router.get('/flights',FlightController.getAllFlight);
+router.patch('/flight/:id',FlightController.update);
 
 
 

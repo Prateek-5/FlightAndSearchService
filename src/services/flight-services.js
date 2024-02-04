@@ -48,6 +48,19 @@ class FlightService{
         }
     }
 
+    async updateFlight(flightId,data){
+        try {
+            console.log("This message is from service layer");
+            
+            const responce=await this.flightrepository.update(flightId,data);
+            return responce;
+
+        } catch (error) {
+            console.log("Something went wrong in the service layer");
+            throw{error};
+        }
+    }
+
 
 
 
